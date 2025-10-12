@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Person</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* графитовый фон */
+            color: #e0e0e0;           /* мягкий текст */
+            font-family: "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+
+        a {
+            color: #4ea1ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #2b2b2b; /* чуть светлее фона */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .btn {
+            background-color: #3a3d41;
+            color: #e0e0e0;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #505357;
+        }
+
+        input, textarea, select {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        code, pre {
+            background: #2e2e2e;
+            color: #dcdcaa;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-family: "Fira Code", monospace;
+        }
+    </style>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/person/{id}(id=${person.id})}" th:object="${person}">
+    <label for="person_name">Enter name:</label>
+    <input type="text" th:field="*{personName}" id="person_name">
+    <div style="color:red" th:if="${#fields.hasErrors('personName')}" th:errors="*{personName}">name error</div>
+    <br>
+    <label for="yearBirth">Enter year birth</label>
+    <input type="text" th:field="*{personBirthYears}" id="yearBirth">
+    <div style="color:red" th:if="${#fields.hasErrors('personBirthYears')}" th:errors="*{personBirthYears}">name error</div>
+    <br>
+    <input type="submit" value="Update!"/>
+</form>
+
+</body>
+</html>

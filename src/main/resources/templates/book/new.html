@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Book</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* графитовый фон */
+            color: #e0e0e0;           /* мягкий текст */
+            font-family: "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+
+        a {
+            color: #4ea1ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #2b2b2b; /* чуть светлее фона */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .btn {
+            background-color: #3a3d41;
+            color: #e0e0e0;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #505357;
+        }
+
+        input, textarea, select {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        code, pre {
+            background: #2e2e2e;
+            color: #dcdcaa;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-family: "Fira Code", monospace;
+        }
+    </style>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/book}" th:object="${book}">
+    <label for="book_title">Введите название книги: </label>
+    <input type="text" th:field="*{bookTitle}" id="book_title">
+    <div style="color:red" th:if="${#fields.hasErrors()}" th:errors="*{bookTitle}">title error</div>
+    <br>
+    <label for="book_author">Введите автора: </label>
+    <input type="text" th:field="*{bookAuthor}" id="book_author">
+    <div style="color:red" th:if="${#fields.hasErrors()}" th:errors="*{bookAuthor}">author errors</div>
+    <br>
+    <label for="book_year">Введите год: </label>
+    <input type="text" th:field="*{bookYears}" id="book_year">
+    <div style="color: red" th:if="${#fields.hasErrors()}" th:errors="*{bookYears}">year error</div>
+    <br>
+    <input type="submit" value="Create!">
+</form>
+<br>
+
+</body>
+</html>
