@@ -1,5 +1,6 @@
 package org.example.libraryv2.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.example.libraryv2.model.Book;
 import org.example.libraryv2.model.Person;
 import org.example.libraryv2.repositories.BookRepository;
@@ -11,19 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/book")
 public class BookController {
 
     private final BookService bookService;
     private final PeopleService peopleService;
-    private final BookRepository bookRepository;
-
-    public BookController(BookService bookService, PeopleService peopleService, BookRepository bookRepository) {
-        this.bookService = bookService;
-        this.peopleService = peopleService;
-        this.bookRepository = bookRepository;
-    }
 
     @GetMapping
     public String  getBooks(Model model,
@@ -56,10 +51,7 @@ public class BookController {
 
     @PostMapping("/{id}/save")
     public String savePerson(@ModelAttribute("person")Person person,BindingResult bindingResult,@PathVariable int id){
-        /*Book book=bookService.findOne(id);
-        book.setOwner(bookService.findPerson(person.getId()));
-        bookService.update(id,book);*/
-        bookService.assignOwnerToBook(id,person.getId());
+        bookService.assignOwnerToBook(id,person.getPersonId());
 
         return "redirect:/book/{id}";
     }

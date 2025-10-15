@@ -28,7 +28,7 @@ public class PeopleController {
         return "person/index";
     }
     @GetMapping("/{id}")
-    public String show(@PathVariable("id")int id,Model model){
+    public String show(@PathVariable("id")Integer id,Model model){
         model.addAttribute("person",peopleService.findOne(id));
         model.addAttribute("book",peopleService.getBook(id));
         return "person/show";
@@ -56,7 +56,7 @@ public class PeopleController {
 
     @PatchMapping("{id}")
     public String update(@ModelAttribute Person person,BindingResult bindingResult,@PathVariable("id")int id){
-        if (bindingResult.hasErrors()) return "people/edit";
+        if (bindingResult.hasErrors()) return "person/edit";
         peopleService.updatePerson(id,person);
         return "redirect:/people";
     }

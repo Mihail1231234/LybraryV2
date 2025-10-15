@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book,Integer> {
-    List<Book> findByOwner_Id(Integer personId);
+    List<Book> findByOwner_PersonId(Integer personId);
     Page<Book> findAll(Pageable pageable);
     List<Book> findBooksByBookTitleIsStartingWithIgnoreCase(String title);
 
