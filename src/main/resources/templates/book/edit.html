@@ -68,7 +68,7 @@
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/book/{id}(id=${book.book_id})}" th:object="${book}">
+<form th:method="PATCH" th:action="@{/book/{id}(id=${book.bookId})}" th:object="${book}">
     <label for="book_title">Введите название книги: </label>
     <input type="text" th:field="*{bookTitle}" id="book_title">
     <div style="color:red" th:if="${#fields.hasErrors()}" th:errors="*{bookTitle}">title error</div>

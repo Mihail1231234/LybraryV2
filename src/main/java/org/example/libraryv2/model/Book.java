@@ -1,10 +1,16 @@
 package org.example.libraryv2.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.example.libraryv2.services.BookService;
 
 import java.time.LocalDate;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "book")
 public class Book {
@@ -25,71 +31,9 @@ public class Book {
     @Column(name = "issued_at")
     private LocalDate time;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "p_id",referencedColumnName = "person_id")
     private Person owner;
-
-    public Book() {
-    }
-
-    public Book(int bookId, String book_title, String bookAuthor, int bookYears, LocalDate time, Person owner) {
-        this.bookId = bookId;
-        this.bookTitle = book_title;
-        this.bookAuthor = bookAuthor;
-        this.bookYears = bookYears;
-        this.time = time;
-        this.owner = owner;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int book_id) {
-        this.bookId = book_id;
-    }
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String book_title) {
-        this.bookTitle = book_title;
-    }
-
-    public String getBookAuthor() {
-        return bookAuthor;
-    }
-
-    public void setBookAuthor(String book_author) {
-        this.bookAuthor = book_author;
-    }
-
-    public int getBookYears() {
-        return bookYears;
-    }
-
-    public void setBookYears(int book_years) {
-        this.bookYears = book_years;
-    }
-
-    public LocalDate getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDate time) {
-        this.time =time;
-    }
-
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
-
-
 
     @Override
     public String toString() {

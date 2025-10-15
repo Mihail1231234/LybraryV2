@@ -77,8 +77,8 @@
     <p>Эта книга свобона. Кому назначить ее?</p>
     <form th:method="POST" th:action="@{/book/{id}/save(id=${book.bookId})}" th:object="${person}">
         <label for="person">Выберите человека:</label>
-        <select  th:field="*{id}" id="person">
-            <option th:each="p:${peop}" th:value="${p.id}" th:text="${p.getPersonName()}"></option>
+        <select  th:field="*{personId}" id="person">
+            <option th:each="p:${peop}" th:value="${p.personId}" th:text="${p.getPersonName()}"></option>
         </select>
         <input type="submit" value="Дать книгу">
     </form>

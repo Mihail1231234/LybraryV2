@@ -38,7 +38,7 @@ public class PeopleService {
 
     @Transactional
     public void updatePerson(int id,Person updatePerson){
-        updatePerson.setId(id);
+        updatePerson.setPersonId(id);
         peopleRepositories.save(updatePerson);
     }
 
@@ -46,11 +46,10 @@ public class PeopleService {
     public void delete(int id){peopleRepositories.deleteById(id);}
 
     @Transactional
-    public List<Book> getBook(int personId){
-        List<Book> books= bookRepository.findByOwner_Id(personId);
-        for (Book book:books){
-            if (book.getOwner().getId()!=personId)books.remove(book);
-        }
-        return books;
+    public List<Book> getBook(Integer personId){
+        return bookRepository.findByOwner_PersonId(personId)
+                .stream()
+                .filter(book -> book.getOwner().getPersonId()!=personId)
+                .toList();
     }
 }

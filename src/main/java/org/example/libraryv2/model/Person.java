@@ -2,9 +2,15 @@ package org.example.libraryv2.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name="person")
 public class Person {
@@ -24,49 +30,9 @@ public class Person {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Book> books;
 
-    public Person(String person_name, String personBirthYears, String email) {
-        this.personName = person_name;
-        this.personBirthYears = personBirthYears;
-        this.email = email;
-    }
-
-    public Person() {
-    }
-
-    public int getId() {
-        return personId;
-    }
-
-    public void setId(int id) {
-        this.personId = id;
-    }
-
-    public String getPersonName() {
-        return personName;
-    }
-
-    public void setPersonName(String person_name) {
-        this.personName = person_name;
-    }
-
-    public String getPersonBirthYears() {
-        return personBirthYears;
-    }
-
-    public void setPersonBirthYears(String person_birth_years) {
-        this.personBirthYears = person_birth_years;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Override
     public String toString() {
