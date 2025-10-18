@@ -39,9 +39,14 @@ public class BookService {
     }
 
     public List<Book> findBookByBookTitle(String title) {
+
         /*if (title == null) {
             throw new RuntimeException("Строка не может быть пустой " + title);
         }*/
+
+        if (title == null) {
+            throw new RuntimeException("Строка не может быть пустой " + title);
+        }
         return bookRepository.findBooksByBookTitleIsStartingWithIgnoreCase(title);
     }
 
